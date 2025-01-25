@@ -27,4 +27,10 @@ app.use(express.static("public"));
 
 app.use(cookieParser());
 
+// Import routes
+import userRouter from "./routes/user.routes.js";
+
+// Routes declaration
+app.use("/api/v1/users", userRouter); // to register the user, the endpoint is /user/register and the app.use('/api/v1/users) is the prefix.
+
 export { app };
