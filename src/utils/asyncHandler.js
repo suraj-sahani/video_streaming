@@ -1,10 +1,5 @@
-// Promise based async handler
-// const asyncHandler = (requestHandler) => {
-//     return (req,res,next) => {
-//         return Promise.resolve(requestHandler(req,res,next)).catch((err) => next);
-//     }
-// }
 
+// Wrapper function to avoid the boilerplate code of async-await and try-catch
 const asyncHandler = (fn) => async(req,res,next) => {
     try {
         await fn(req,res,next);
