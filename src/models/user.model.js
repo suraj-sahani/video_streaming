@@ -47,7 +47,9 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// This hash password will run everytime the user updates something which would create problem. To avoid this, we only hash the password when the user is created and when the password is modified
+// This hash password will run everytime the user updates something which would create problem for validations.
+// When the user updates any field, we need to return the updated values except the password since it can cause security issues.
+// To avoid this, we only hash the password when the user is created and when the password is modified
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
